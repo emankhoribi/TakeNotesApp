@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TakeNotesApp</string>
+    <string name="title">Title</string>
+    <string name="type_thoughts">Type your thoughts...</string>
 </resources>
