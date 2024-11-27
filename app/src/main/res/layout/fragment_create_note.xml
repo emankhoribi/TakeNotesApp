@@ -49,60 +49,69 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="horizontal">
         <RadioButton
+            android:id="@+id/creamRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/white"
             android:button="null"
-            android:background="@drawable/red_unchecked"/>
+            android:background="@drawable/selector_creamy"/>
 
         <RadioButton
+            android:id="@+id/redRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_red"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/blueRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_blue"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/pinkRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_pink"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/greenRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_green"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/cashmereRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_cashmere"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/moovRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:background="@drawable/selector_moov"
             android:layout_marginStart="5dp"/>
         <RadioButton
+            android:id="@+id/blackRd"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
             android:button="null"
-            android:background="@drawable/red_unchecked"
+            android:checked="true"
+            android:background="@drawable/selector_black"
             android:layout_marginStart="5dp"/>
 
     </RadioGroup>
