@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -53,7 +54,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/white"
-            android:button="null"
+            android:button="@null"
+
             android:background="@drawable/selector_creamy"/>
 
         <RadioButton
@@ -61,7 +63,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_red"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -69,7 +71,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_blue"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -77,7 +79,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_pink"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -85,7 +87,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_green"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -93,7 +95,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_cashmere"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -101,7 +103,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
+            android:button="@null"
             android:background="@drawable/selector_moov"
             android:layout_marginStart="5dp"/>
         <RadioButton
@@ -109,8 +111,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:buttonTint="@color/black"
-            android:button="null"
-            android:checked="true"
+            android:button="@null"
             android:background="@drawable/selector_black"
             android:layout_marginStart="5dp"/>
 
