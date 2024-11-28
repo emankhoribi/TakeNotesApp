@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(note: Note): Long
+    suspend fun upsert(note: Note): Long
 
     @Query("SELECT * FROM note WHERE id = :id")
     fun getNote(id: Int): Flow<Note>

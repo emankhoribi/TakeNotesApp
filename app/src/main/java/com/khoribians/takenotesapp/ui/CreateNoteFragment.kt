@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import com.khoribians.takenotesapp.R
 import com.khoribians.takenotesapp.databinding.FragmentCreateNoteBinding
 import com.khoribians.takenotesapp.viewmodel.CreateNoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateNoteFragment : Fragment() {
 
 
