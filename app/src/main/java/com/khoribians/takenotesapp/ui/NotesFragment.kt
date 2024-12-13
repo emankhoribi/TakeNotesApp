@@ -6,16 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.khoribians.takenotesapp.R
 import com.khoribians.takenotesapp.databinding.FragmentNotesBinding
 import com.khoribians.takenotesapp.ui.adapter.NotesAdapter
 import com.khoribians.takenotesapp.viewmodel.NotesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class NotesFragment : Fragment() {
 
 
@@ -39,13 +43,16 @@ class NotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.notesRv.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.notesRv.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
 
         val notesAdapter = NotesAdapter()
+        viewModel.getNotes()
         lifecycleScope.launch {
-            viewModel.notesFLow.collect {
-                notesAdapter.submitList(it)
-                binding.notesRv.adapter = notesAdapter
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.notesFLow.collect {
+                    notesAdapter.submitList(it)
+                    binding.notesRv.adapter = notesAdapter
+                }
             }
         }
         binding.addBtn.setOnClickListener {

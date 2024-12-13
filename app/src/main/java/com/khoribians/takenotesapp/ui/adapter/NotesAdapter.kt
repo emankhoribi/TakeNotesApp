@@ -21,6 +21,10 @@ class NotesAdapter(): ListAdapter<Note, NotesAdapter.ViewHolder>(NoteDiffCallbac
 
     class ViewHolder(private val itemBinding: HolderNoteBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(note: Note) {
+            itemBinding.titleNoteTv.text = note.title
+            itemBinding.thoughtsNoteTv.text = note.thoughts
+            itemBinding.cnstLayout.setBackgroundColor(note.color)
+            itemBinding.dateTv.text = note.date
            }
     }
 

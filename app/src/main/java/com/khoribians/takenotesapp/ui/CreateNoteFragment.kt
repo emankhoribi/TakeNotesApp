@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.khoribians.takenotesapp.R
 import com.khoribians.takenotesapp.databinding.FragmentCreateNoteBinding
+import com.khoribians.takenotesapp.util.DateUtil
 import com.khoribians.takenotesapp.viewmodel.CreateNoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,11 +52,18 @@ class CreateNoteFragment : Fragment() {
                 4 -> color = requireContext().getColor(R.color.green)
                 5 -> color = requireContext().getColor(R.color.cashmere)
                 6 -> color = requireContext().getColor(R.color.moov)
-                7 -> color = requireContext().getColor(R.color.black)
             }
             binding.root.setBackgroundColor(color)
         }
 
         binding.radioGroup.check(binding.creamRd.id)
+
+        binding.doneIv.setOnClickListener {
+            viewModel.upsertNote(binding.titleEt.text.toString(), binding.bodyEt.text.toString(),
+                color, DateUtil.getTimeDate(DateUtil.TIME_DATE_FORMAT))
+            findNavController().popBackStack()
+        }
     }
+
+
 }

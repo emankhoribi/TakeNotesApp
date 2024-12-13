@@ -6,21 +6,29 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
-    android:background="@color/black"
+    android:background="@color/creamy"
     tools:context=".ui.CreateNoteFragment">
 
 
+    <ImageView
+        android:id="@+id/doneIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_done"/>
     <EditText
         android:id="@+id/titleEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doneIv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/title"
         android:textSize="24sp"
         android:textColor="@color/dark_grey"
         android:background="@drawable/rec_editext"
+        android:layout_marginTop="10dp"
         android:padding="10dp"/>
 
     <com.khoribians.takenotesapp.util.CustomEditTextWithBullets
@@ -106,14 +114,7 @@
             android:button="@null"
             android:background="@drawable/selector_moov"
             android:layout_marginStart="5dp"/>
-        <RadioButton
-            android:id="@+id/blackRd"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:buttonTint="@color/black"
-            android:button="@null"
-            android:background="@drawable/selector_black"
-            android:layout_marginStart="5dp"/>
+
 
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
