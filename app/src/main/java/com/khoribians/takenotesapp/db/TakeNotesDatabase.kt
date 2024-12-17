@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.khoribians.takenotesapp.db.data.Note
 
 
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class], version = 2)
 abstract class TakeNotesDatabase : RoomDatabase(){
     abstract fun NoteDao(): NoteDao
 }

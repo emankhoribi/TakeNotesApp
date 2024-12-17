@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.khoribians.takenotesapp.R
 import com.khoribians.takenotesapp.databinding.FragmentCreateNoteBinding
+import com.khoribians.takenotesapp.db.data.Note
 import com.khoribians.takenotesapp.util.DateUtil
 import com.khoribians.takenotesapp.viewmodel.CreateNoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,8 +22,8 @@ class CreateNoteFragment : Fragment() {
     private val viewModel: CreateNoteViewModel by viewModels()
     private lateinit var binding: FragmentCreateNoteBinding
 
-    private  var color: Int = 0
-
+    private var color: Int = 0
+    val noteData: CreateNoteFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,7 +46,7 @@ class CreateNoteFragment : Fragment() {
 
             val radioButton: View = radioGroup.findViewById(i)
             val index = radioGroup.indexOfChild(radioButton)
-            when(index){
+            when (index) {
                 0 -> color = requireContext().getColor(R.color.creamy)
                 1 -> color = requireContext().getColor(R.color.red)
                 2 -> color = requireContext().getColor(R.color.blue)
@@ -58,11 +60,41 @@ class CreateNoteFragment : Fragment() {
 
         binding.radioGroup.check(binding.creamRd.id)
 
+        if (noteData.note != null) {
+            binding.titleEt.setText(noteData.note!!.title)
+            binding.bodyEt.setText(noteData.note!!.thoughts)
+            binding.radioGroup.check(getColorId(noteData.note!!.color))
+        }
+
         binding.doneIv.setOnClickListener {
-            viewModel.upsertNote(binding.titleEt.text.toString(), binding.bodyEt.text.toString(),
-                color, DateUtil.getTimeDate(DateUtil.TIME_DATE_FORMAT))
+            if (noteData.note != null) {
+                viewModel.update(
+                    noteData.note!!.id, binding.titleEt.text.toString(), binding.bodyEt.text.toString(),
+                    color, DateUtil.getTimeDate(DateUtil.TIME_DATE_FORMAT)
+                )
+            } else
+                viewModel.insert(
+                    binding.titleEt.text.toString(), binding.bodyEt.text.toString(),
+                    color, DateUtil.getTimeDate(DateUtil.TIME_DATE_FORMAT)
+                )
             findNavController().popBackStack()
         }
+
+
+    }
+
+    fun getColorId(color: Int): Int {
+        var id = 0
+        when (color) {
+            requireContext().getColor(R.color.creamy) -> id = binding.creamRd.id
+            requireContext().getColor(R.color.red) -> id = binding.redRd.id
+            requireContext().getColor(R.color.blue) -> id = binding.blueRd.id
+            requireContext().getColor(R.color.pink) -> id = binding.pinkRd.id
+            requireContext().getColor(R.color.green) -> id = binding.greenRd.id
+            requireContext().getColor(R.color.cashmere) -> id = binding.cashmereRd.id
+            requireContext().getColor(R.color.moov) -> id = binding.moovRd.id
+        }
+        return id
     }
 
 

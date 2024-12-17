@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.khoribians.takenotesapp.R
 import com.khoribians.takenotesapp.databinding.FragmentNotesBinding
+import com.khoribians.takenotesapp.db.data.Note
 import com.khoribians.takenotesapp.ui.adapter.NotesAdapter
 import com.khoribians.takenotesapp.viewmodel.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), NotesAdapter.RecyclerViewEvent {
 
 
     private val viewModel: NotesViewModel by viewModels()
@@ -29,7 +30,6 @@ class NotesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
@@ -45,7 +45,7 @@ class NotesFragment : Fragment() {
 
         binding.notesRv.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
 
-        val notesAdapter = NotesAdapter()
+        val notesAdapter = NotesAdapter(this)
         viewModel.getNotes()
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -56,7 +56,13 @@ class NotesFragment : Fragment() {
             }
         }
         binding.addBtn.setOnClickListener {
+
             findNavController().navigate(R.id.action_notesFragment_to_createNoteFragment)
         }
+    }
+
+    override fun onItemClick(note: Note) {
+        val directions = NotesFragmentDirections.actionNotesFragmentToCreateNoteFragment(note)
+        findNavController().navigate(directions)
     }
 }

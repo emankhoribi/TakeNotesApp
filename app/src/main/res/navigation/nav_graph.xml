@@ -18,5 +18,11 @@
         android:id="@+id/createNoteFragment"
         android:name="com.khoribians.takenotesapp.ui.CreateNoteFragment"
         android:label="fragment_create_note"
-        tools:layout="@layout/fragment_create_note" />
+        tools:layout="@layout/fragment_create_note" >
+        <argument
+            android:name="note"
+            app:argType="com.khoribians.takenotesapp.db.data.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
