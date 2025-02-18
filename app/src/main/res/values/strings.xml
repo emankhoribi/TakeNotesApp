@@ -3,4 +3,5 @@
     <string name="title">Title</string>
     <string name="type_thoughts">Type your thoughts...</string>
     <string name="notes">Notes</string>
+    <string name="search">Search</string>
 </resources>

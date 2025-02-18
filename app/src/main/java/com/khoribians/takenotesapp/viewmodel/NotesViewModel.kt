@@ -27,4 +27,17 @@ class NotesViewModel @Inject constructor(val repository: NotesRepository) : View
             }
         }
     }
+
+
+    fun getSearchNotes(searchQuery: String) {
+        viewModelScope.launch {
+            try {
+                repository.getSearchNotes(searchQuery).collect {
+                    _notesFLow.value = it
+                }
+            } catch (e: Exception) {
+                Log.e("RegisterViewModel", e.message.toString())
+            }
+        }
+    }
 }

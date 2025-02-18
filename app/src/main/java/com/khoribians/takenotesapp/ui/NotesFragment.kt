@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -46,14 +47,19 @@ class NotesFragment : Fragment(), NotesAdapter.RecyclerViewEvent {
         binding.notesRv.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
 
         val notesAdapter = NotesAdapter(this)
+        binding.notesRv.adapter = notesAdapter
         viewModel.getNotes()
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.notesFLow.collect {
                     notesAdapter.submitList(it)
-                    binding.notesRv.adapter = notesAdapter
+
                 }
             }
+        }
+
+        binding.searchEt.doOnTextChanged { text, start, before, count ->
+            viewModel.getSearchNotes("%$text%")
         }
         binding.addBtn.setOnClickListener {
 
