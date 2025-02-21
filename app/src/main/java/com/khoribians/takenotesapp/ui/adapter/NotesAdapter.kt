@@ -35,12 +35,18 @@ class NotesAdapter(private val listener: RecyclerViewEvent) :
 
         init {
             itemBinding.root.setOnClickListener(this)
+            itemBinding.deleteIv.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(getItem(position))
+                when (p0?.id) {
+                    itemBinding.root.id -> listener.onItemClick(getItem(position))
+                    itemBinding.deleteIv.id -> listener.onItemDeleted(getItem(position))
+
+                }
+
             }
         }
 
@@ -65,5 +71,6 @@ class NotesAdapter(private val listener: RecyclerViewEvent) :
 
     interface RecyclerViewEvent {
         fun onItemClick(note: Note)
+        fun onItemDeleted(note: Note)
     }
 }

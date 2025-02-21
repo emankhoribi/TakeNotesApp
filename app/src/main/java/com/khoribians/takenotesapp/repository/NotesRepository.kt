@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class NotesRepository(private val db: TakeNotesDatabase) {
 
-    fun getNotes() : Flow<List<Note>> = db.NoteDao().getNotes()
-    fun getSearchNotes(searchQuery: String) : Flow<List<Note>> = db.NoteDao().searchDatabase(searchQuery)
+    fun getNotes() : Flow<MutableList<Note>> = db.NoteDao().getNotes()
+    fun getSearchNotes(searchQuery: String) : Flow<MutableList<Note>> = db.NoteDao().searchDatabase(searchQuery)
+    suspend fun deleteRecord(note: Note) : Int = db.NoteDao().deleteRecord(note)
 }

@@ -12,10 +12,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NotesViewModel @Inject constructor(val repository: NotesRepository) : ViewModel() {
-    private val _notesFLow: MutableStateFlow<List<Note>?> = MutableStateFlow(null)
+    private val _notesFLow: MutableStateFlow<MutableList<Note>?> = MutableStateFlow(null)
     val notesFLow = _notesFLow
 
-    fun getNotes() {
+
+    init {
 
         viewModelScope.launch {
             try {
@@ -35,6 +36,19 @@ class NotesViewModel @Inject constructor(val repository: NotesRepository) : View
                 repository.getSearchNotes(searchQuery).collect {
                     _notesFLow.value = it
                 }
+            } catch (e: Exception) {
+                Log.e("RegisterViewModel", e.message.toString())
+            }
+        }
+    }
+
+    fun deleteRecord(note: Note) {
+        viewModelScope.launch {
+            try {
+
+                repository.deleteRecord(note)
+
+
             } catch (e: Exception) {
                 Log.e("RegisterViewModel", e.message.toString())
             }

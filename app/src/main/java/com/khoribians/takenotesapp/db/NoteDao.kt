@@ -1,6 +1,7 @@
 package com.khoribians.takenotesapp.db
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -18,11 +19,11 @@ interface NoteDao {
 
 
     @Query("SELECT * FROM note ")
-    fun getNotes(): Flow<List<Note>>
+    fun getNotes(): Flow<MutableList<Note>>
 
     @Query("SELECT * FROM note WHERE title LIKE :searchQuery OR thoughts LIKE :searchQuery")
-    // and then search query will be passed through
-    // the perimeter of this function
-    // and then function will return the flow of list of person
-    fun searchDatabase(searchQuery: String): Flow<List<Note>>
+    fun searchDatabase(searchQuery: String): Flow<MutableList<Note>>
+
+    @Delete
+    suspend fun deleteRecord(note: Note): Int
 }

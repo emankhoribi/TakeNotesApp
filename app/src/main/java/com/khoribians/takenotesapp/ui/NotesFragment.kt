@@ -48,7 +48,7 @@ class NotesFragment : Fragment(), NotesAdapter.RecyclerViewEvent {
 
         val notesAdapter = NotesAdapter(this)
         binding.notesRv.adapter = notesAdapter
-        viewModel.getNotes()
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.notesFLow.collect {
@@ -70,5 +70,9 @@ class NotesFragment : Fragment(), NotesAdapter.RecyclerViewEvent {
     override fun onItemClick(note: Note) {
         val directions = NotesFragmentDirections.actionNotesFragmentToCreateNoteFragment(note)
         findNavController().navigate(directions)
+    }
+
+    override fun onItemDeleted(note: Note) {
+        viewModel.deleteRecord(note)
     }
 }
